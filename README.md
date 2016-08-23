@@ -12,9 +12,9 @@
 Less Runtime :
 - minSdkVersion 9
 - gradle or maven
-- jar [Download just like this Path](https://github.com/MDL-Sinlov/MDL_Android_Updater/raw/master/mvn-repo/mdl/sinlov/update/updater/0.0.1/updater-0.0.1-jarLib.jar)
+- jar [Download just like this Path](https://github.com/MDL-Sinlov/MDL_Android_Updater/raw/master/mvn-repo/mdl/sinlov/update/updater/0.0.1/updater-0.0.1-jarLib.zip)
 
-> eclipse just use every repo at version `updater-x.x.x-jarLib.jar`
+> eclipse just use every repo at version `updater-x.x.x-jarLib.zip`
 
 Project Runtime:
 - Android Studio 2.0
