@@ -17,6 +17,9 @@ allprojects {
         maven {
             url 'https://raw.githubusercontent.com/MDL-Sinlov/MDL_Android_Log/master/mvn-repo/'
         }
+        maven {
+            url 'https://raw.githubusercontent.com/MDL-Sinlov/MDL_Android_Updater/master/mvn-repo/'
+        }
         jcenter()
     }
 }
