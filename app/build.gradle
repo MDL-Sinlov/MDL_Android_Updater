@@ -29,6 +29,6 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     compile 'mdl.sinlov.android:log:0.0.1'
     //end for demo
-//    compile project(':updater')
-    compile 'mdl.sinlov.update:updater:0.0.1'
+    compile project(':updater')
+//    compile 'mdl.sinlov.update:updater:0.0.1'
 }
