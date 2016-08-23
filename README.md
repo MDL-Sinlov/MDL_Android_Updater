@@ -7,12 +7,12 @@
 - can define check and setting
 - use android download manager, so package is less method count
 
-> version 0.0.1 method count `55`
+> version 0.0.1 method count `58`
 
 Less Runtime :
 - minSdkVersion 9
 - gradle or maven
-- jar [Download just like this Path](https://github.com/MDL-Sinlov/MDL_Android_Updater/raw/master/mvn-repo/mdl/sinlov/update/updater/0.0.1/updater-0.0.1-jarLib.zip)
+- jar [Download just like this Path](https://github.com/MDL-Sinlov/MDL_Android_Updater/raw/master/mvn-repo/mdl/sinlov/update/updater/0.0.2/updater-0.0.2-jarLib.zip)
 
 > eclipse just use every repo at version `updater-x.x.x-jarLib.zip`
 
@@ -21,6 +21,12 @@ Project Runtime:
 - appcompat-v7:23.4.0
 - Gradle 2.10
 - com.android.tools.build:gradle:2.0.0
+
+# Last Update Info
+
+- version 0.0.2
+
+add method at `Updater` setForciblyUpdate isForciblyUpdate isMobileUpdate
 
 # Dependency
 
@@ -40,7 +46,7 @@ in module `build.gradle`
 
 ```gradle
 dependencies {
-    compile 'mdl.sinlov.update:updater:0.0.1'
+    compile 'mdl.sinlov.update:updater:0.0.2'
 }
 ```
 

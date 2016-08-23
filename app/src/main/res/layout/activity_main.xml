@@ -44,6 +44,12 @@
             android:text="@string/btn_update_forcibly" />
 
         <Button
+            android:id="@+id/btn_update_forcibly_ui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_update_forcibly_ui" />
+
+        <Button
             android:id="@+id/btn_change_download_click_string"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/btn_change_download_click_call_back" />
-
 
 
     </LinearLayout>

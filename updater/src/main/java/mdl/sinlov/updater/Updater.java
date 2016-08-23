@@ -68,6 +68,18 @@ public class Updater {
         return canUpdate;
     }
 
+    public boolean isForciblyUpdate() {
+        return isForciblyUpdate;
+    }
+
+    public void setForciblyUpdate(boolean forciblyUpdate) {
+        isForciblyUpdate = forciblyUpdate;
+    }
+
+    public boolean isMobileUpdate() {
+        return isMobileUpdate;
+    }
+
     public void init(Application application, UpdateSetting updateSetting) {
         this.application = application;
         this.preferences = application.getSharedPreferences(TAG, Context.MODE_PRIVATE);

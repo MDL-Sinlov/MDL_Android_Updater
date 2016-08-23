@@ -39,8 +39,11 @@ public class MainActivity extends AppCompatActivity {
     Button btnChangeDownloadClickString;
     @BindView(R.id.btn_change_download_click_call_back)
     Button btnChangeDownloadClickCallBack;
+    @BindView(R.id.btn_update_forcibly_ui)
+    Button btnUpdateForciblyUi;
 
     private AlertDialog forciblyUI;
+    private UpdateCheckSetting updateSetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 //        ALog.initTag();
-        Updater.getInstance().init(this.getApplication(), new UpdateCheckSetting(
-                new CheckUpdate(false, 2, "mdl.sinlov.android.updater", "http://192.168.1.107:8082/app-debug.apk")));
+        updateSetting = new UpdateCheckSetting(
+                new CheckUpdate(false, 2, "mdl.sinlov.android.updater", "http://192.168.1.107:8082/app-debug.apk"));
+        Updater.getInstance().init(this.getApplication(), updateSetting);
     }
 
     @Override
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.btn_check_update, R.id.btn_update, R.id.btn_update_silent, R.id.btn_update_forcibly,
-            R.id.btn_change_download_click_string, R.id.btn_change_download_click_call_back})
+            R.id.btn_update_forcibly_ui, R.id.btn_change_download_click_string, R.id.btn_change_download_click_call_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_check_update:
@@ -75,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 Updater.getInstance().update(true);
                 break;
             case R.id.btn_update_forcibly:
+                Updater.getInstance().setForciblyUpdate(true);
                 Updater.getInstance().update(false);
+                break;
+            case R.id.btn_update_forcibly_ui:
+                //TODO forcibly ui
                 break;
             case R.id.btn_change_download_click_string:
                 UpdaterDownloadCallBack.setDownloadNotificationClickStr("My click words");
