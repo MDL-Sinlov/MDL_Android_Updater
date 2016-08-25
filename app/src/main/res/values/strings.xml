@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">MDL_Android_Updater</string>
+    <string name="app_name">Updater</string>
     <string name="btn_check_update">Check Update</string>
     <string name="btn_update">Update</string>
     <string name="btn_update_silent">Update Silent</string>
     <string name="btn_update_forcibly">Update Forcibly</string>
+    <string name="btn_update_forcibly_ui">Beta! Update forcibly with UI</string>
     <string name="btn_change_download_click_string">Chane Download String</string>
     <string name="btn_change_download_click_call_back">Change Download Click Call Back</string>
-    <string name="btn_update_forcibly_ui">Update forcibly with UI</string>
 </resources>

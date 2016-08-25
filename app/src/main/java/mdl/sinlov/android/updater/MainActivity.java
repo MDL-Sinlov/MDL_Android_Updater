@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 Updater.getInstance().update(false);
                 break;
             case R.id.btn_update_forcibly_ui:
-                //TODO forcibly ui
+                Updater.getInstance().updateForciblyUI();
+                //TODO forcibly ui , will not show in MIUI
                 break;
             case R.id.btn_change_download_click_string:
                 UpdaterDownloadCallBack.setDownloadNotificationClickStr("My click words");

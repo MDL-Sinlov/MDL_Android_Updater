@@ -6,9 +6,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * for updater of android application
@@ -51,6 +59,8 @@ public class Updater {
     private boolean canUpdate;
     private boolean isMobileUpdate = false;
     private String installPath;
+    private String tvTitleUI = "Update";
+    private String btnUpdateUI = "Ok";
 
     public synchronized static Updater getInstance() {
         if (null == instance) {
@@ -231,6 +241,48 @@ public class Updater {
         updateOwnSilent(true, updateVC, updatePN);
     }
 
+    /**
+     * This method do not show in MIUI and some ROM
+     */
+    @Deprecated
+    public void updateForciblyUI() {
+        WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
+        final WindowManager mWindowManager = (WindowManager) application.getSystemService(Context.WINDOW_SERVICE);
+        wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+        wmParams.format = 1;
+        wmParams.flags = 1280;
+        wmParams.gravity = 49;
+        wmParams.x = 0;
+        wmParams.y = 0;
+        wmParams.width = -1;
+        wmParams.height = -1;
+        final LinearLayout infoLayout = new LinearLayout(application);
+        ViewGroup.LayoutParams mmLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        ViewGroup.LayoutParams mwLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        infoLayout.setLayoutParams(mmLayoutParams);
+        infoLayout.setOrientation(LinearLayout.VERTICAL);
+        infoLayout.setBackgroundColor(Color.TRANSPARENT);
+        infoLayout.setGravity(17);
+        TextView tvTitle = new TextView(application);
+        tvTitle.setLayoutParams(mwLayoutParams);
+        tvTitle.setText(tvTitleUI);
+        tvTitle.setGravity(17);
+        tvTitle.setBackgroundColor(Color.BLACK);
+        tvTitle.setTextColor(Color.WHITE);
+        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
+        infoLayout.addView(tvTitle);
+        Button btnUpdate = new Button(application);
+        btnUpdate.setLayoutParams(mwLayoutParams);
+        btnUpdate.setText(btnUpdateUI);
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWindowManager.removeView(infoLayout);
+            }
+        });
+        infoLayout.addView(btnUpdate);
+        mWindowManager.addView(infoLayout, wmParams);
+    }
 
     private Updater() {
     }

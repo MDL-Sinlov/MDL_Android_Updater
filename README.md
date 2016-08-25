@@ -12,7 +12,7 @@
 Less Runtime :
 - minSdkVersion 9
 - gradle or maven
-- jar [Download just like this Path](https://github.com/MDL-Sinlov/MDL_Android_Updater/raw/master/mvn-repo/mdl/sinlov/update/updater/0.0.2/updater-0.0.2-jarLib.zip)
+- jar [Download just like this Path](https://github.com/MDL-Sinlov/MDL-Android-Repo/raw/master/mvn-repo/mdl/sinlov/android/updater/0.0.3/updater-0.0.3-jarLib.zip)
 
 > eclipse just use every repo at version `updater-x.x.x-jarLib.zip`
 
@@ -24,7 +24,7 @@ Project Runtime:
 
 # Last Update Info
 
-- version 0.0.2
+- version 0.0.3
 
 add method at `Updater` setForciblyUpdate isForciblyUpdate isMobileUpdate
 
@@ -35,7 +35,7 @@ at root project `build.gradle`
 ```gradle
 repositories {
     maven {
-        url 'https://raw.githubusercontent.com/MDL-Sinlov/MDL_Android_Updater/master/mvn-repo/'
+        url 'https://raw.githubusercontent.com/MDL-Sinlov/MDL-Android-Repo/master/mvn-repo/'
     }
     jcenter()
     ...
@@ -46,7 +46,7 @@ in module `build.gradle`
 
 ```gradle
 dependencies {
-    compile 'mdl.sinlov.update:updater:0.0.2'
+    compile 'mdl.sinlov.android:updater:0.0.3'
 }
 ```
 
