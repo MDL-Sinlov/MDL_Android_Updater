@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
+
 /**
  * for updater of android application
  * <pre>
@@ -43,6 +45,8 @@ public class Updater {
     private static final String UPDATE_DOWNLOAD_PATH = "update_download";
     private static final String KEY_VERSION_DOWNLOAD_URL = "mdl:update:key:download_url";
     private static final String KEY_VERSION_CODE = "mdl:update:key:version_code";
+    private static final String KEY_DOWNLOAD_VERSION_CODE =  "mdl:download:key:version_code";
+    private static final String KEY_DOWNLOAD_COMPLETE_PATH = "mdl:download:key:complete:path";
     private static final String MATCHES_RES_URL = "^https?://(([a-zA-Z0-9_-])+(\\.)?)*(:\\d+)?(/((\\.)?(\\?)?=?&?[a-zA-Z0-9_-](\\?)?)*)*$";
     private static Updater instance;
     private Application application;
@@ -101,6 +105,14 @@ public class Updater {
             public void filePath(String path) {
                 Log.i(TAG, "OnDownloadComplete: " + path);
                 installPath = path;
+                //clear cache;
+                editorShared.remove(KEY_DOWNLOAD_COMPLETE_PATH);
+                editorShared.remove(KEY_DOWNLOAD_VERSION_CODE);
+                editorShared.commit();
+
+                editorShared.putString(KEY_DOWNLOAD_COMPLETE_PATH , path);
+                editorShared.putInt(KEY_DOWNLOAD_VERSION_CODE, updateVC);
+                editorShared.apply();
                 installAPKByDownload();
             }
         });
@@ -157,15 +169,17 @@ public class Updater {
     }
 
     public boolean installAPKByDownload() {
-        if (TextUtils.isEmpty(installPath)) {
-            new NullPointerException("your install path is empty, please check!").printStackTrace();
+        String cacheApkPath = preferences.getString(KEY_DOWNLOAD_COMPLETE_PATH,"");
+        int versionCode     = preferences.getInt(KEY_DOWNLOAD_VERSION_CODE, 0);
+
+        if (TextUtils.isEmpty(cacheApkPath) || versionCode != updateVC || !new File(Uri.parse(cacheApkPath).getPath()).exists()) {
+            new NullPointerException("your install path is empty or version not equal!").printStackTrace();
             return false;
         } else {
-            DefaultPackageInstaller.installApk(application, installPath);
+            DefaultPackageInstaller.installApk(application, cacheApkPath);
             return true;
         }
     }
-
     private PackageInfo getOnePackageInfo(PackageManager packageManager, String packageName) {
         try {
             return packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
